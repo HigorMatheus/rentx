@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { StatusBar, StyleSheet } from 'react-native';
+import React from 'react';
+import { StatusBar } from 'react-native';
+import { Feather } from '@expo/vector-icons';
 
 import { BackButton } from '../../components/BackButton';
 import { ImageSlider } from '../../components/ImageSlider';
@@ -23,28 +24,31 @@ import {
   Rent,
   Period,
   Price,
-  About,
   Accessories,
   Footer,
-  OfflineInfo,
+  RentalPeriod,
+  CalendarIcon,
+  DateInfo,
+  DateTitle,
+  DateValue,
+  RentalPrice,
+  RentalPriceLabel,
+  RentalPriceDetails,
+  RentalPriceQuota,
+  RentalPriceTotal,
 } from './styles';
 import { Button } from '../../components/Button';
+import { RFValue } from 'react-native-responsive-fontsize';
+import { useTheme } from 'styled-components';
 import { useNavigation } from '@react-navigation/native';
 
-// interface Params {
-//   car: CarModel;
-// }
-
-export function CarDetails() {
+export function SchedulingDetails() {
+  const theme = useTheme();
   const navigation = useNavigation();
 
   function handleConfirmRental() {
-    navigation.navigate('Scheduling');
+    navigation.navigate('SchedulingComplete');
   }
-  function handleBack() {
-    navigation.goBack();
-  }
-
   return (
     <Container>
       <StatusBar
@@ -53,7 +57,7 @@ export function CarDetails() {
         backgroundColor="transparent"
       />
       <Header>
-        <BackButton onPress={handleBack} />
+        <BackButton onPress={() => {}} />
       </Header>
       <CarImages>
         <ImageSlider
@@ -81,17 +85,41 @@ export function CarDetails() {
           <Accessory name="Auto" icon={ExchangeSvg} />
           <Accessory name="2 pessoas" icon={PeopleSvg} />
         </Accessories>
-        <About>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis
-          numquam laudantium perspiciatis culpa beatae provident voluptate vitae
-          sed quas quo earum maiores corrupti obcaecati, qui, sunt blanditiis
-          quidem. Reiciendis, modi.
-        </About>
+        <RentalPeriod>
+          <CalendarIcon>
+            <Feather
+              name="calendar"
+              size={RFValue(24)}
+              color={theme.colors.shape}
+            />
+          </CalendarIcon>
+          <DateInfo>
+            <DateTitle>DE</DateTitle>
+            <DateValue>18/06/2021</DateValue>
+          </DateInfo>
+          <Feather
+            name="chevron-right"
+            size={RFValue(10)}
+            color={theme.colors.text}
+          />
+          <DateInfo>
+            <DateTitle>ATÉ</DateTitle>
+            <DateValue>18/06/2021</DateValue>
+          </DateInfo>
+        </RentalPeriod>
+        <RentalPrice>
+          <RentalPriceLabel>TOTAL</RentalPriceLabel>
+          <RentalPriceDetails>
+            <RentalPriceQuota>R$ 58 x 3 diárias </RentalPriceQuota>
+            <RentalPriceTotal>R$ 2.900</RentalPriceTotal>
+          </RentalPriceDetails>
+        </RentalPrice>
       </Content>
       <Footer>
         <Button
           onPress={handleConfirmRental}
-          title="Escolher Período do Aluguel"
+          title="Alugar agora"
+          color={theme.colors.success}
         />
       </Footer>
     </Container>

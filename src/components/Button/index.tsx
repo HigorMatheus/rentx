@@ -1,6 +1,7 @@
-import React from "react";
+import { useTheme } from '@react-navigation/native';
+import React from 'react';
 
-import { Container, Title } from "./styles";
+import { Container, Title } from './styles';
 
 interface ButtonProps {
   title: string;
@@ -8,8 +9,9 @@ interface ButtonProps {
   onPress: () => void;
 }
 export function Button({ title, color, ...rest }: ButtonProps) {
+  const theme = useTheme();
   return (
-    <Container {...rest} color={color}>
+    <Container {...rest} color={color ? color : theme.colors.main}>
       <Title>{title}</Title>
     </Container>
   );
