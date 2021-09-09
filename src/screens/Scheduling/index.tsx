@@ -25,6 +25,9 @@ export function Scheduling() {
   function handleConfirmRental() {
     navigation.navigate('SchedulingDetails');
   }
+  function handleBack() {
+    navigation.goBack();
+  }
 
   return (
     <Container>
@@ -34,7 +37,7 @@ export function Scheduling() {
         backgroundColor="transparent"
       />
       <Header>
-        <BackButton onPress={() => {}} color={theme.colors.shape} />
+        <BackButton onPress={handleBack} color={theme.colors.shape} />
         <Title>
           Escolha uma{'\n'}data de início e{'\n'}fim do aluguel
         </Title>
@@ -50,9 +53,7 @@ export function Scheduling() {
           </DateInfo>
         </RentalPeriod>
       </Header>
-      <Content>
-        <Calendar />
-      </Content>
+      <Content>{/* <Calendar markedDates={} onDayPress={} /> */}</Content>
       <Footer>
         <Button onPress={handleConfirmRental} title="Confirmar"></Button>
       </Footer>

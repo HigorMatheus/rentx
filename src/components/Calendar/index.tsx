@@ -4,19 +4,35 @@ import { useTheme } from 'styled-components';
 import {
   Calendar as CustomCalendar,
   LocaleConfig,
+  DateCallbackHandler,
 } from 'react-native-calendars';
 import { ptBR } from './localeConfig';
+import { RFValue } from 'react-native-responsive-fontsize';
 LocaleConfig.locales['pt-br'] = ptBR;
 
 LocaleConfig.defaultLocale = 'pt-br';
-
-export const Calendar: React.FC = () => {
+interface MarkedDatesProps {
+  [date: string]: {
+    textColor?: string | undefined;
+    startingDay?: boolean | undefined;
+    color?: string | undefined;
+    selected?: boolean | undefined;
+    endingDay?: boolean | undefined;
+    disabled?: boolean | undefined;
+    disabledTouchEvent?: boolean;
+  };
+}
+interface ICalendarProps {
+  markedDates: MarkedDatesProps;
+  onDayPress: DateCallbackHandler;
+}
+export function Calendar({ markedDates, onDayPress }: ICalendarProps) {
   const theme = useTheme();
   return (
     <CustomCalendar
       renderArrow={(direction) => (
         <Feather
-          size={24}
+          size={RFValue(24)}
           color={theme.colors.text}
           name={direction === 'left' ? 'chevron-left' : 'chevron-right'}
         />
@@ -42,8 +58,8 @@ export const Calendar: React.FC = () => {
       firstDay={1}
       minDate={new Date()}
       markingType="period"
-      // markedDates={markedDates}
-      // onDayPress={onDayPress}
+      markedDates={markedDates}
+      onDayPress={onDayPress}
     />
   );
-};
+}
