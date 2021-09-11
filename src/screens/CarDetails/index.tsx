@@ -39,11 +39,13 @@ interface Params {
 
 export function CarDetails() {
   const route = useRoute();
-  const { car }: Params = route.params;
+  const { car } = route.params as Params;
   const navigation = useNavigation();
 
   function handleConfirmRental() {
-    navigation.navigate('Scheduling');
+    navigation.navigate('Scheduling', {
+      params: car,
+    });
   }
   function handleBack() {
     navigation.goBack();

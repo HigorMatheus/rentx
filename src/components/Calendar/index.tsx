@@ -8,6 +8,7 @@ import {
 } from 'react-native-calendars';
 import { ptBR } from './localeConfig';
 import { RFValue } from 'react-native-responsive-fontsize';
+import { generateInterval } from './generateInterval';
 LocaleConfig.locales['pt-br'] = ptBR;
 
 LocaleConfig.defaultLocale = 'pt-br';
@@ -22,15 +23,23 @@ interface MarkedDatesProps {
     disabledTouchEvent?: boolean;
   };
 }
+
+interface IDayProps {
+  dateString?: string;
+  day: number;
+  month: number;
+  timestamp: number;
+}
+
 interface ICalendarProps {
   markedDates: MarkedDatesProps;
   onDayPress: DateCallbackHandler;
 }
-export function Calendar({ markedDates, onDayPress }: ICalendarProps) {
+function Calendar({ markedDates, onDayPress }: ICalendarProps) {
   const theme = useTheme();
   return (
     <CustomCalendar
-      renderArrow={(direction) => (
+      renderArrow={direction => (
         <Feather
           size={RFValue(24)}
           color={theme.colors.text}
@@ -63,3 +72,4 @@ export function Calendar({ markedDates, onDayPress }: ICalendarProps) {
     />
   );
 }
+export { Calendar, IDayProps, MarkedDatesProps, generateInterval };
