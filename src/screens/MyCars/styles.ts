@@ -10,7 +10,7 @@ export const Container = styled.View`
 
 export const Header = styled.View`
   width: 100%;
-  height: 255px;
+  height: ${RFValue(255)}px;
   background-color: ${({ theme }) => theme.colors.header};
   justify-content: center;
   padding-left: ${RFValue(25)}px;
@@ -44,7 +44,7 @@ export const Appointments = styled.View`
   justify-content: space-between;
   align-items: center;
 
-  padding: 24px 0;
+  padding: ${RFValue(24)}px 0;
 `;
 
 export const AppointmentsTitle = styled.Text`
@@ -60,13 +60,13 @@ export const AppointmentsQuantity = styled.Text`
 `;
 
 export const CarWhapper = styled.View`
-  margin-bottom: 16px;
+  margin-bottom: ${RFValue(16)}px;
 `;
 
 export const CarFooter = styled.View`
   width: 100%;
-  padding: 12px;
-  margin-top: -10px;
+  padding: ${RFValue(12)}px;
+  margin-top: ${RFValue(-10)}px;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;

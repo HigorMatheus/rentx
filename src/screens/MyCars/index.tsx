@@ -25,12 +25,14 @@ import {
 import { Car } from '../../components/Car';
 import { Load } from '../../components/Load';
 import { LoadCar } from '../../components/LoadCar';
+import { Car as ModelCar } from '../../database/model/Car';
+import { format } from 'date-fns/esm';
 interface ICarProps {
   id: string;
-  car: CarDTO;
+  car: ModelCar;
   user_id: string;
-  startDate: string;
-  endDate: string;
+  start_date: string;
+  end_date: string;
 }
 export function MyCars() {
   const [cars, setCars] = useState<ICarProps[]>([]);
@@ -44,7 +46,7 @@ export function MyCars() {
     const loadData = async () => {
       setLoading(true);
       try {
-        const response = await api.get(`schedules_byuser/?user_id=1`);
+        const response = await api.get(`/rentals`);
 
         setCars(response.data);
       } catch (error) {
@@ -86,14 +88,18 @@ export function MyCars() {
                 <CarFooter>
                   <CartFooterTitle>Período</CartFooterTitle>
                   <CarFooterPeriod>
-                    <CartFooterDate>{item.startDate}</CartFooterDate>
+                    <CartFooterDate>
+                      {format(new Date(item.start_date), 'dd/MM/yyyy')}
+                    </CartFooterDate>
                     <AntDesign
                       name="arrowright"
                       size={20}
                       color={theme.colors.title}
                       style={{ marginHorizontal: 10 }}
                     />
-                    <CartFooterDate>{item.endDate}</CartFooterDate>
+                    <CartFooterDate>
+                      {format(new Date(item.end_date), 'dd/MM/yyyy')}
+                    </CartFooterDate>
                   </CarFooterPeriod>
                 </CarFooter>
               </CarWhapper>
