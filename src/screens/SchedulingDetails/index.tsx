@@ -40,7 +40,7 @@ import {
 } from './styles';
 import { api } from '../../service/api';
 
-interface Params {
+export interface SchedulingDetailsParams {
   car: CarDTO;
   dates: Array<string>;
 }
@@ -56,7 +56,7 @@ export function SchedulingDetails() {
   const theme = useTheme();
   const navigation = useNavigation();
   const route = useRoute();
-  const { car, dates } = route.params as Params;
+  const { car, dates } = route.params as SchedulingDetailsParams;
 
   const rentalTotal = Number(dates.length * car.rent.price);
 
@@ -85,7 +85,13 @@ export function SchedulingDetails() {
         id: car.id,
         unavailable_dates,
       })
-      .then((res) => navigation.navigate('SchedulingComplete'))
+      .then((res) => {
+        navigation.navigate('Confirmation', {
+          nextScreenRoute: 'Home',
+          title: 'Carro alugado!',
+          message: `Agora você só precisa ir\naté a concessionária da RENTX\npegar o seu automovel.`,
+        });
+      })
       .catch((err) => Alert.alert('Não foi possivel confirmar o agendamento'))
       .finally(() => setLoading(false));
   }

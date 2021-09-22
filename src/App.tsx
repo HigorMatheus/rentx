@@ -13,6 +13,7 @@ import {
 } from '@expo-google-fonts/archivo';
 import theme from './styles/theme';
 import { Routes } from './routes';
+import { AppProvider } from './hooks';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -27,7 +28,9 @@ export default function App() {
   }
   return (
     <ThemeProvider theme={theme}>
-      <Routes />
+      <AppProvider>
+        <Routes />
+      </AppProvider>
     </ThemeProvider>
   );
 }

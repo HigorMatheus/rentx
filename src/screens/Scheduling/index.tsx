@@ -30,7 +30,7 @@ interface RentalPeriod {
   startFormatted: string;
   endFormatted: string;
 }
-interface Params {
+export interface SchedulingParams {
   car: CarDTO;
 }
 
@@ -48,7 +48,7 @@ export function Scheduling() {
   const theme = useTheme();
   const navigation = useNavigation();
   const route = useRoute();
-  const { car } = route.params as Params;
+  const { car } = route.params as SchedulingParams;
 
   function handleConfirmRental() {
     navigation.navigate('SchedulingDetails', {

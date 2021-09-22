@@ -9,7 +9,10 @@ import {
   CarImage,
 } from './styles';
 interface ImageSliderProps {
-  imagesUrl: Array<string>;
+  imagesUrl: Array<{
+    id: string;
+    photo: string;
+  }>;
 }
 interface ChangeImageProps {
   viewableItems: ViewToken[];
@@ -24,17 +27,17 @@ export function ImageSlider({ imagesUrl }: ImageSliderProps) {
   return (
     <Container>
       <ImageIndexes>
-        {imagesUrl.map((_, index) => (
-          <ImageIndex key={String(index)} active={index === imageIndex} />
+        {imagesUrl.map((item, index) => (
+          <ImageIndex key={String(item.id)} active={index === imageIndex} />
         ))}
       </ImageIndexes>
 
       <FlatList
         data={imagesUrl}
-        keyExtractor={(key) => key}
+        keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <CartImageWrapper>
-            <CarImage source={{ uri: item }} resizeMode="contain" />
+            <CarImage source={{ uri: item.photo }} resizeMode="contain" />
           </CartImageWrapper>
         )}
         horizontal

@@ -8,27 +8,12 @@ import { Scheduling } from '../screens/Scheduling';
 import { Confirmation } from '../screens/Confirmation';
 import { MyCars } from '../screens/MyCars';
 import { Splash } from '../screens/Splash';
-import { CarDTO } from '../dtos/CarDTO';
 
 const { Navigator, Screen } = createNativeStackNavigator();
-// declare global {
-//   namespace ReactNavigation {
-//     interface RootParamList {
-//       Splash: undefined;
-//       Home: undefined;
-//       CarDetails: CarDetailsParams;
-//       SchedulingDetails: undefined;
-//       Scheduling: undefined;
-//       SchedulingComplete: undefined;
-//       MyCars: undefined;
-//     }
-//   }
-// }
 
 export function StackRoutes() {
   return (
-    <Navigator screenOptions={{ headerShown: false }} initialRouteName="Splash">
-      <Screen name="Splash" component={Splash} />
+    <Navigator screenOptions={{ headerShown: false }} initialRouteName="Home">
       <Screen
         name="Home"
         component={Home}

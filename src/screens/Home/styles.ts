@@ -1,13 +1,13 @@
 import styled from 'styled-components/native';
 import { FlatList } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
-import { RectButton } from 'react-native-gesture-handler';
 import { CarDTO } from '../../dtos/CarDTO';
+import { Car as ModelCar } from '../../database/model/Car';
 
 export const Container = styled.View`
   flex: 1;
-  /* justify-content: center; */
-  /* align-items: center; */
+  justify-content: center;
+  align-items: center;
   background-color: ${({ theme }) => theme.colors.background_primary};
 `;
 
@@ -32,23 +32,11 @@ export const TotalCars = styled.Text`
   color: ${({ theme }) => theme.colors.text};
 `;
 
-export const CarList = styled(FlatList as new () => FlatList<CarDTO>).attrs({
+export const CarList = styled(FlatList as new () => FlatList<ModelCar>).attrs({
   contentContainerStyle: {
     padding: 24,
   },
   showVerticalScrollIndicator: false,
 })`
   width: 100%;
-`;
-
-export const MyCarsButton = styled(RectButton)`
-  width: 60px;
-  height: 60px;
-  background-color: ${({ theme }) => theme.colors.main};
-  align-items: center;
-  justify-content: center;
-  border-radius: 30px;
-  position: absolute;
-  bottom: 22px;
-  right: 13px;
 `;

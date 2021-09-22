@@ -1,12 +1,24 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 
-import { StackRoutes } from './stack.routes';
+import { AppTabRoutes } from './app.tab.routes';
+import { useAuth } from '../hooks/auth';
+import { AuthRoutes } from './auth.routes';
+import { LoadCar } from '../components/LoadCar';
+type Params = {} | unknown;
 
 export function Routes() {
+  const { user, loading } = useAuth();
+
   return (
-    <NavigationContainer>
-      <StackRoutes />
-    </NavigationContainer>
+    <>
+      {loading ? (
+        <LoadCar></LoadCar>
+      ) : (
+        <NavigationContainer>
+          {user.id ? <AppTabRoutes /> : <AuthRoutes />}
+        </NavigationContainer>
+      )}
+    </>
   );
 }

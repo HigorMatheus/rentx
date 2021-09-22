@@ -24,6 +24,7 @@ import {
 } from './styles';
 import { Car } from '../../components/Car';
 import { Load } from '../../components/Load';
+import { LoadCar } from '../../components/LoadCar';
 interface ICarProps {
   id: string;
   car: CarDTO;
@@ -68,7 +69,7 @@ export function MyCars() {
         <SubTitle>Conforto, segurança e praticidade</SubTitle>
       </Header>
       {loading ? (
-        <Load />
+        <LoadCar />
       ) : (
         <Content>
           <Appointments>
