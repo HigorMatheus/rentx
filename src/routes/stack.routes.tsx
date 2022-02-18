@@ -2,7 +2,7 @@ import React from 'react';
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Home } from '../screens/Home';
-import { CarDetails } from '../screens/CarDetails';
+import { CarDetails, CarDetailsParams } from '../screens/CarDetails';
 import { SchedulingDetails } from '../screens/SchedulingDetails';
 import { Scheduling } from '../screens/Scheduling';
 import { Confirmation } from '../screens/Confirmation';
@@ -11,19 +11,19 @@ import { Splash } from '../screens/Splash';
 import { CarDTO } from '../dtos/CarDTO';
 
 const { Navigator, Screen } = createNativeStackNavigator();
-// declare global {
-//   namespace ReactNavigation {
-//     interface RootParamList {
-//       Splash: undefined;
-//       Home: undefined;
-//       CarDetails: CarDetailsParams;
-//       SchedulingDetails: undefined;
-//       Scheduling: undefined;
-//       SchedulingComplete: undefined;
-//       MyCars: undefined;
-//     }
-//   }
-// }
+declare global {
+  namespace ReactNavigation {
+    interface RootParamList {
+      Splash: undefined;
+      Home: undefined;
+      CarDetails: CarDetailsParams;
+      SchedulingDetails: undefined;
+      Scheduling: undefined;
+      SchedulingComplete: undefined;
+      MyCars: undefined;
+    }
+  }
+}
 
 export function StackRoutes() {
   return (

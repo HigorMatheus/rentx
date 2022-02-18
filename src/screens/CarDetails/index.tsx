@@ -41,7 +41,7 @@ import {
   OfflineInfo,
 } from './styles';
 
-interface Params {
+export interface CarDetailsParams {
   car: CarModel;
 }
 
@@ -51,7 +51,7 @@ export function CarDetails() {
   const netInfo = useNetInfo();
   const navigation = useNavigation();
   const route = useRoute();
-  const { car } = route.params as Params;
+  const { car } = route.params as CarDetailsParams;
 
   const theme = useTheme();
 
